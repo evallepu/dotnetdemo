@@ -10,12 +10,11 @@ RUN dotnet restore && \
     dotnet build "dotnet6.csproj" -c Release && \
     dotnet publish "dotnet6.csproj" -c Release -o publish
 
-
 FROM mcr.microsoft.com/dotnet/aspnet:6.0 AS base
 WORKDIR /app
 COPY --from=build /app/publish .
 
-ENV ASPNETCORE_URLS http://*:5000
+ENV ASPNETCORE_URLS http://*:9000
 
 RUN groupadd -r eshwar && \
     useradd -r -g eshwar -s /bin/false eshwar && \
@@ -23,5 +22,5 @@ RUN groupadd -r eshwar && \
 
 USER eshwar
 
-EXPOSE 5000
+EXPOSE 9000
 ENTRYPOINT ["dotnet", "dotnet6.dll"]
