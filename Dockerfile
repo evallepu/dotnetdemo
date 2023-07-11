@@ -1,5 +1,5 @@
 # Use the base image
-FROM cr.microsoft.com/dotnet/sdk:6.0
+FROM mcr.microsoft.com/dotnet/sdk:6.0
 
 # Create a new user 'appuser'
 RUN useradd -ms /bin/bash appuser
