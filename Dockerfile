@@ -1,21 +1,27 @@
-# Use the base image
-FROM mcr.microsoft.com/dotnet/sdk:3.1
+# Use the official .NET Core SDK image as the base
+FROM mcr.microsoft.com/dotnet/sdk:5.0.401
 
-
-# Create a new user 'appuser'
-RUN useradd -ms /bin/bash appuser
+# Set up a non-root user
+RUN groupadd -g 1001 appuser && \
+    useradd -r -u 1001 -g appuser appuser
 
 # Set the working directory
-WORKDIR /app
+WORKDIR /home/appuser
+
+# Change ownership of the working directory to the appuser
+RUN chown -R appuser:appuser /home/appuser
+
+# Switch to the appuser
+USER appuser
 
 # Copy the application files
-COPY . .
+COPY . /app
 
-# Change ownership to 'appuser'
-RUN chown -R appuser:appuser /app
+# Build the application
+RUN dotnet build
 
-# Switch to the 'appuser' before running the application
-USER appuser
+# Expose the necessary port
+EXPOSE 80
 
 # Start the application
 CMD ["dotnet", "run"]
