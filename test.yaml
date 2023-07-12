@@ -1,22 +1,22 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: dotnetdocker-app-deployment
+  name: dotnetdemo-app-deployment
   labels:
-    app: dotnetdocker-app
-  namespace: sk
+    app: dotnetdemo-app
+  namespace: esh
 spec:
   replicas: 2
   selector:
     matchLabels:
-      app: dotnetdocker-app
+      app: dotnetdemo-app
   template:
     metadata:
       labels:
-        app: dotnetdocker-app
+        app: dotnetdemo-app
     spec:
       containers:
-      - name: dotnetdocker-app
-        image: saikirangannu/sk:latest
+      - name: dotnetdemo-app
+        image: eshwar0495/dyfhfj
         ports:
         - containerPort: 5000
