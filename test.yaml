@@ -17,6 +17,6 @@ spec:
     spec:
       containers:
       - name: dotnetdemo-app
-        image: eshwar0495/dyfhfj
+        image: eshwar0495/dyfhfj:latest
         ports:
-        - containerPort: 9002
+        - containerPort: 9000
