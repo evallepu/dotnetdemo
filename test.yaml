@@ -19,4 +19,4 @@ spec:
       - name: dotnetdemo-app
         image: eshwar0495/dyfhfj
         ports:
-        - containerPort: 5000
+        - containerPort: 9000
