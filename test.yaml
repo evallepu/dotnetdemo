@@ -14,10 +14,12 @@ spec:
   template:
     metadata:
       labels:
-        app: dotnetdemo-app
+        app: myapp
     spec:
       containers:
-      - name: dotnetdemo-app
-        image: pknnd/dotnetdemo-app
+      - name: dockerdep-10-app
+        image: dockerscan123.azurecr.io/dotnetdemo-app 
         ports:
-        - containerPort: 9000
+        - containerPort: 80
+      imagePullSecrets:
+        - name: eshwar123
