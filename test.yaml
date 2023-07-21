@@ -31,11 +31,11 @@ spec:
       - name: dockerjuly
         image: dockerjuly.azurecr.io/dotnetdemo-app:latest
         ports:
-        - containerPort: 9000
+        - containerPort: 4469
         livenessProbe:
           httpGet:
             path: /_status/healthz
-            port: 9000   # Corrected port to match the containerPort
+            port: 4469   # Corrected port to match the containerPort
           initialDelaySeconds: 8
           periodSeconds: 10
           failureThreshold: 3  # Corrected field name
@@ -43,7 +43,7 @@ spec:
         readinessProbe:
           httpGet:
             path: /readiness
-            port: 9000   # Corrected port to match the containerPort
+            port: 4469   # Corrected port to match the containerPort
           initialDelaySeconds: 15
           periodSeconds: 5
         env:
