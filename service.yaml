@@ -1,11 +1,11 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: dotnetdemo-app
+  name: ockerjuly
   namespace: esh
 spec:
   selector:
-    app: dotnetdemo-app
+    app: ockerjuly
   ports:
     - protocol: TCP
       port: 80
