@@ -29,7 +29,7 @@ spec:
             name: dockerjuly-deployment
       containers:
       - name: dockerjuly
-        image: dockerjuly.azurecr.io/dotnetdemo-app:latest
+        image: dotnetdemo-app:latest
         ports:
         - containerPort: 9000
         livenessProbe:
@@ -43,7 +43,7 @@ spec:
         readinessProbe:
           httpGet:
             path: /readiness
-            port: 9000   # Corrected port to match the containerPort
+            port: 9000  # Corrected port to match the containerPort
           initialDelaySeconds: 15
           periodSeconds: 5
         env:
