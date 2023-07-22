@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: dotnetdemo-app-deployement
+  name: dotnetdemo-app-deployment
   namespace: eswar
   labels:
     app: dotnetdemo-app
@@ -29,7 +29,7 @@ spec:
             name: dotnetdemo-app-deployment
       containers:
       - name: dotnetdemo-app
-        image: eshwar0495/dotnet:latest
+        image: eshwar0495/dotnet:latest  # Updated to use your Docker Hub repository
         ports:
         - containerPort: 9000
         livenessProbe:
@@ -52,4 +52,3 @@ spec:
             configMapKeyRef:
               key: DB_HOST
               name: dotnetdemo-app-deployment
-      # Add other containers if needed
