@@ -2,7 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: dotnetdemo-app-deployement
-  namespace: esh
+  namespace: eswar
   labels:
     app: dotnetdemo-app
 spec:
