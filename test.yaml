@@ -1,15 +1,15 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: dockerjuly-deployement 
+  name: dotnetdemo-app-deployement
   namespace: esh
   labels:
-    app: dockerjuly
+    app: dotnetdemo-app
 spec:
   replicas: 2
   selector:
     matchLabels:
-      app: dockerjuly
+      app: dotnetdemo-app
   strategy:
     type: RollingUpdate
     rollingUpdate:
@@ -18,7 +18,7 @@ spec:
   template:
     metadata:
       labels:
-        app: dockerjuly
+        app: dotnetdemo-app
     spec:
       initContainers:
       - name: init-setup
@@ -26,29 +26,30 @@ spec:
         command: ['sh', '-c', 'ls; pwd; sleep 10']
         envFrom:
         - configMapRef:
-            name: dockerjuly-deployment
+            name: dotnetdemo-app-deployment
       containers:
-      - name: dockerjuly
-        image: dotnetdemo-app:latest
+      - name: dotnetdemo-app
+        image: dockerjuly.azurecr.io/dotnetdemo-app:latest
         ports:
         - containerPort: 9000
         livenessProbe:
           httpGet:
             path: /_status/healthz
-            port: 9000   # Corrected port to match the containerPort
+            port: 9000
           initialDelaySeconds: 8
           periodSeconds: 10
-          failureThreshold: 3  # Corrected field name
-          successThreshold: 1  # Corrected field name
+          failureThreshold: 3
+          successThreshold: 1
         readinessProbe:
           httpGet:
             path: /readiness
-            port: 9000  # Corrected port to match the containerPort
+            port: 9000
           initialDelaySeconds: 15
           periodSeconds: 5
         env:
-        - name: dockerjuly-deployment
+        - name: dotnetdemo-app-deployment
           valueFrom:
             configMapKeyRef:
               key: DB_HOST
-              name: dockerjuly-deployment
+              name: dotnetdemo-app-deployment
+      # Add other containers if needed
