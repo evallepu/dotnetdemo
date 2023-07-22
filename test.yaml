@@ -29,7 +29,7 @@ spec:
             name: dotnetdemo-app-deployment
       containers:
       - name: dotnetdemo-app
-        image: dockerjuly.azurecr.io/dotnetdemo-app:latest
+        image: eshwar0495/eshwar:latest
         ports:
         - containerPort: 9000
         livenessProbe:
