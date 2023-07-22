@@ -1,14 +1,26 @@
-# Use an ARM64 base image
-FROM arm64v8/debian:buster-slim
-
-# Install dependencies and copy the dotnet application files
-COPY ./app /app
-
-# Set the working directory and expose the required port
+FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
 WORKDIR /app
+
+RUN apt-get update && \
+    curl -sL https://deb.nodesource.com/setup_16.x | bash - && \
+    apt-get -y install nodejs
+
+COPY . ./
+RUN dotnet restore && \
+    dotnet build "dotnet6.csproj" -c Release && \
+    dotnet publish "dotnet6.csproj" -c Release -o publish
+
+FROM mcr.microsoft.com/dotnet/aspnet:6.0 AS base
+WORKDIR /app
+COPY --from=build /app/publish .
+
+ENV ASPNETCORE_URLS http://*:9000
+
+RUN groupadd -r eshwar && \
+    useradd -r -g eshwar -s /bin/false eshwar && \
+    chown -R eshwar:eshwar /app
+
+USER eshwar
+
 EXPOSE 9000
-
-# Set any environment variables required for the dotnet application
-
-# Start the dotnet application
-CMD ["dotnet", "YourAppName.dll"]
+ENTRYPOINT ["dotnet", "dotnet6.dll"]
