@@ -2,7 +2,7 @@ apiVersion: autoscaling/v2
 kind: HorizontalPodAutoscaler
 metadata:
   name: dotnetdemo-app-hpa
-  namespace: eswar
+  namespace: dotnet
 spec:
   scaleTargetRef:
     apiVersion: apps/v1

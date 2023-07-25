@@ -2,7 +2,7 @@ apiVersion: v1
 kind: ConfigMap
 metadata:
   name: dotnetdemo-app-deployment
-  namespace: eswar
+  namespace: dotnet
 data:
   DB_HOST: key
   # Add other configuration key-value pairs as needed

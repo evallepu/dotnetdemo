@@ -14,7 +14,7 @@ FROM mcr.microsoft.com/dotnet/aspnet:6.0 AS base
 WORKDIR /app
 COPY --from=build /app/publish .
 
-ENV ASPNETCORE_URLS http://*:9000
+ENV ASPNETCORE_URLS http://*:5000
 
 RUN groupadd -r eshwar && \
     useradd -r -g eshwar -s /bin/false eshwar && \
