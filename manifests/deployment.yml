@@ -1,0 +1,19 @@
+apiVersion : apps/v1
+kind: Deployment
+metadata:
+  name: evallepudotnetdemo 
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: evallepudotnetdemo
+  template:
+    metadata:
+      labels:
+        app: evallepudotnetdemo 
+    spec:
+      containers:
+        - name: evallepudotnetdemo 
+          image: kbsdeploye.azurecr.io/evallepudotnetdemo
+          ports:
+          - containerPort: 9000
