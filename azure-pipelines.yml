@@ -19,7 +19,7 @@ variables:
   imagePullSecret: 'kbsdeploye16729c1f-auth'
 
   # Agent VM image name
-  vmImageName: 'ubuntu-latest'
+  vmImageName: 'selfhosted'
 
 
 stages:
@@ -29,7 +29,7 @@ stages:
   - job: Build
     displayName: Build
     pool:
-      vmImage: $(vmImageName)
+      Name: $(vmImageName)
     steps:
     - task: Docker@2
       displayName: Build and push an image to container registry
